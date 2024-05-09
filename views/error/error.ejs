@@ -1,0 +1,16 @@
+<% layout('layouts/boilerPlate') -%>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="alter alter-danger col-6 offset-3 text-center " role="alert">
+      <h2><%= statusCode %></h2>
+      <h3><%= message %></h3>
+      <p>
+        Sorry, an error has occurred,
+        <br />
+        Try refreshing the page or click the button below to go back to the
+      </p>
+      <a href="/listings" class="btn btn-primary">Home</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<script>
+  const mapToken = "<%= process.env.MAP_PUBLIC_TOKEN %>";
+  const center = `<%= listing.geometry.coordinates %>`.split(",");
+</script>
+<div class="col-8 offset-2 my-5">
+  <h3 class="text-start">Where you'll be</h3>
+  <div id="map"></div>
+</div>
+<script src="/js/mapbox.js"></script>

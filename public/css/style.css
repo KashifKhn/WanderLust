@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap");
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.navbar {
+  height: 5rem;
+  background-color: #fff;
+}
+
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+
+.nav-link {
+  color: #222222 !important;
+}
+
+/* footer */
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.f-info-socials i {
+  font-size: 1.2rem;
+}
+
+.f-info {
+  height: 8rem;
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+/* Cards */
+
+/* .card {
+  border: none;
+} */
+
+.card-body {
+  padding: 0rem;
+}
+
+.card-img-overlay {
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.3;
+  background: #fff;
+}
+
+/* new form */
+
+.add-btn,
+.edit-btn {
+  background-color: #fe424d;
+  border-color: #fe424d;
+  color: #fff;
+}
+
+.add-btn:hover,
+.edit-btn:hover {
+  background-color: #ff5a65;
+  border-color: #ff5a65;
+  color: #fff;
+}
+
+/* Review */
+.fa-star {
+  color: #fe424d;
+  font-size: 1rem;
+}
+
+.alert:empty {
+  display: none;
+}
+
+/* map box styling   */
+#map {
+  width: 100%;
+  height: 70vh;
+  border-radius: 5px;
+}

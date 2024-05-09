@@ -1,0 +1,52 @@
+<% layout('layouts/boilerPlate') -%>
+<div class="row">
+  <div class="col-8 offset-2 my-3">
+    <h3>
+      <b> <%= listing.title %> </b>
+    </h3>
+  </div>
+  <div class="col-6 offset-2 mb-5">
+    <div class="card col border-0 my-3 d-flex flex-column gap-4">
+      <img
+        src="<%= listing.image.url %>"
+        class="card-img-top rounded w-100 object-fit-cover"
+        alt="<%=listing.image.filename %>"
+        style="height: auto; max-height: 20rem"
+      />
+      <div class="card-body d-flex flex-column gap-2">
+        <p class="card-text d-flex flex-column gap-1">
+          &#8377; <%= listing.price.toLocaleString("en-IN") %>
+        </p>
+
+        <p class="card-text fst-italic">
+          Owned By: <span class="fs-5"> <%= listing.owner.username %> </span>
+        </p>
+
+        <p class="card-text"><%= listing.description %></p>
+        <p class="card-text d-flex gap-4">
+          <small class="text-muted"> <%= listing.country %> </small>
+          <small class="text-muted"> <%= listing.location %> </small>
+        </p>
+      </div>
+      <% if(currentUser && currentUser._id.equals(listing.owner._id)) { %>
+      <div class="d-flex gap-4 w-100">
+        <a
+          class="btn btn-primary w-100"
+          href="/listings/<%= listing._id %>/edit"
+          >Edit</a
+        >
+        <form
+          class="d-inline-block w-100"
+          action="/listings/<%= listing._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger w-100">Delete</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </div>
+  <hr />
+  <%- include("../includes/review.ejs", {listing})%> <%-
+  include("../includes/map.ejs", {listing})%>
+</div>

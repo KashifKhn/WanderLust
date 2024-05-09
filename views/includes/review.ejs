@@ -1,0 +1,88 @@
+<div
+  class="col-8 offset-2 my-3 d-flex flex-column justify-content-center align-items-center"
+>
+  <% if(currentUser) { %>
+  <h4>Leave a Review</h4>
+  <form
+    action="/listings/<%= listing.id %>/reviews"
+    method="POST"
+    class="w-100 my-5 text-center needs-validation"
+    novalidate
+  >
+    <div class="mb-3 text-start">
+      <label class="form-label" for="rating">Rating</label>
+      <fieldset class="starability-heartbeat">
+        <input
+          type="radio"
+          id="no-rate"
+          class="input-no-rate"
+          name="review[rating]"
+          value="1"
+          checked
+          aria-label="No rating."
+        />
+        <input type="radio" id="second-rate1" name="review[rating]" value="1" />
+        <label for="second-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="second-rate2" name="review[rating]" value="2" />
+        <label for="second-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="second-rate3" name="review[rating]" value="3" />
+        <label for="second-rate3" title="Average">3 stars</label>
+        <input type="radio" id="second-rate4" name="review[rating]" value="4" />
+        <label for="second-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="second-rate5" name="review[rating]" value="5" />
+        <label for="second-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+      <div class="invalid-feedback">Please select a rating</div>
+    </div>
+    <div class="mb-3 text-start">
+      <label class="form-label" for="comment">Comment</label>
+      <textarea
+        class="form-control"
+        name="review[comment]"
+        id="comment"
+        cols="20"
+        rows="5"
+        placeholder="Write your comment here..."
+        required
+      ></textarea>
+      <div class="invalid-feedback">Please write a comment</div>
+    </div>
+    <button class="btn btn-primary w-50" type="submit">Submit</button>
+  </form>
+  <% } %>
+  <div class="w-100">
+    <h5 class="mt-4">All Reviews ( <%= listing.reviews.length%> ) <br /></h5>
+    <% if (listing.reviews.length > 0) { %>
+    <p class="my-2 mb-4">Average Rating: <%= avgRating %></p>
+    <% } %>
+    <div class="row">
+      <% if (listing.reviews.length === 0) { %>
+      <div class="col-12 text-center">
+        <h5>No Reviews Yet</h5>
+      </div>
+      <% } %> <% listing.reviews.forEach((review) => { %>
+      <div class="card col-5 mb-3 ms-2 p-3">
+        <div class="card-body">
+          <h5 class="card-title">@ <%= review.author.username %></h5>
+          <p
+            class="starability-result card-text"
+            data-rating="<%= review.rating %>"
+          >
+            > Rated: <%= review.rating %> stars
+          </p>
+          <p class="card-text"><%= review.comment %></p>
+        </div>
+        <% if(currentUser && currentUser._id.equals(review.author._id)) { %>
+        <form
+          class="my-3"
+          method="POST"
+          action="/listings/<%= listing.id %>/reviews/<%= review.id %>?_method=DELETE"
+        >
+          <button class="btn btn-outline-danger">Delete</button>
+        </form>
+        <% } %>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
